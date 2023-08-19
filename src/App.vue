@@ -23,7 +23,11 @@ export default {
   },
   methods: {
     addOne() {
-      return this.$store.commit('increment');
+      // return this.$store.commit('increase', { value: 10 }); // paramenter payload ini nilai yang diinputkan bebas bisa number, object, atau lainnya
+      return this.$store.commit({
+        type: 'increase',
+        value: 10
+      });
     }
   }
 };
