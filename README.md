@@ -21,53 +21,74 @@ State:
 ### installasi
 1. npm install --save vuex
 
-### analogi
-katakanlah saya ingin memiliki counter dimulai dari 0
+### memulai dengan cara sederhana
 
-**file: App.vue**
+main.js
+
+```
+import { createApp } from 'vue';
+
+import App from './App.vue';
+import { createStore } from 'vuex';
+
+const store = createStore({
+
+    state() {
+        // ini melakukan return data object
+        return {
+            // contohnya saya punya objec counter: 0
+            counter: 0
+        }
+    }
+})
+
+const app = createApp(App);
+app.use(store)
+
+app.mount('#app');
+```
+
+App.vue
+
 ```
 <template>
- <!-- <h1>{{ $store.state.counter }}</h1> --> <!-- bisa langsung seperti ini jika tidak dimasukan ke computed properti -->
-<h1>{{ counter }} </h1>
-  <button @click="addCounter">Add</button>
+  <base-container title="Vuex">
+    <h1>{{ counter }}</h1>
+    <button @click="addOne">Add 1</button>
+  </base-container>
 </template>
 
 <script>
+import BaseContainer from './components/BaseContainer.vue';
+
 export default {
-    computed: {
-      counter() {
-        return this.$store.state.counter
-      }
+  components: {
+    BaseContainer,
   },
-    methods: {
-      addCounter(){
-        this.$store.state.counter++
+  computed: {
+    counter() {
+      return this.$store.state.counter
+    }
+  },
+  methods: {
+    addOne() {
+      return this.$store.state.counter++
     }
   }
+};
+</script>
+```
+
+kalau mau pakaid di component functionnya harus sertakan ini juga:
+
+```
+<script>
+export default {
+   computed: {
+    counter() {
+      return this.$store.state.counter
+    }
+  },
 }
 </script>
 ```
-2. import di main.js
-**file: main.js**
-
-```
-import App from './App.vue' // ini untuk merender element html
-import {createStore} from 'vuex'; //  ini vuex yang akan kita gunakan
-
-// lalu konfigurasi seperti ini
-const store = createStore({
-  // state ini digunakan untuk menyimpan keseluruhan data yang bisa diakses diseluruh komponen aplikasi
-  state() {
-    return {
-      counter: 0
-    }
-  }
-})
-
-// untuk menghubungkannya gunakan use pada createApp
-const app = createApp(App);
-app.use(store); // state kita
-app.mount('#app'); // ini mengambil id dari html kita yang akan dirender
-```
-3. 
-4. 
