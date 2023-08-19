@@ -92,3 +92,76 @@ export default {
 }
 </script>
 ```
+
+# mutations
+mutasi adalah metode yang didefinisikan dengan jelas, yang memiliki logika yang jelas untuk update state
+
+**Mutations sangat baik digunakan untuk mengubah data, mengapa?**
+
+***karena dapat meminimalisir duplikasi code***
+
+contohnya seperti ini, sebelum dan sesudah menggunakan mutation silahkan lihat.
+
+### Sebelum menggunakan mutations
+
+case:
+ingin mengubah data awal, ketika tidak menggunakan mutation maka harus mengubah setiap state yang tersambung.
+
+App.vue
+
+```
+........code lainnya sama
+
+ methods: {
+    addOne() {
+      return this.$store.state.counter = this.$store.state.counter + 11  // nah keadaan ini yang harus diubah di file ChangeCounter.vue juga, bayangkan ketika punya 10 komponent maka harus mengubah method ini di keseluruhan?
+    }
+  }
+```
+components/ChangeCounter.vue
+```
+<template>
+    <button @click="addOne">Add 2</button>
+</template>
+
+<script>
+export default {
+    methods: {
+        addOne() {
+            return this.$store.state.counter++
+        }
+    }
+}
+</script>
+```
+
+### Sesudah menggunakan mutations
+
+main.js
+```
+mutations: {
+      // parameter state sudah ditentukan oleh vuex
+      increment(state) {
+      state.counter = state.counter + 1 // ini hanya diubah sekali jika ingin mengubah state keseluruhan data
+    }
+}
+
+lalu saya ingin mengubah di component ChangeCounter.vue
+
+export default {
+    methods: {
+        addOne() {
+            return this.$store.commit('increment') // hanya ini yang diubah
+        }
+    }
+}
+</script>
+
+dan dibuah sama di App.vue
+
+ methods: {
+    addOne() {
+      return this.$store.commit('increment');
+    }
+  }
+```

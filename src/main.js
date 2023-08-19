@@ -11,6 +11,12 @@ const store = createStore({
             // contohnya saya punya objec counter: 0
             counter: 0
         }
+    },
+    mutations: {
+        // parameter state sudah ditentukan oleh vuex
+        increment(state) {
+            state.counter = state.counter + 1 // ini hanya diubah sekali jika ingin mengubah state keseluruhan data
+        }
     }
 })
 
