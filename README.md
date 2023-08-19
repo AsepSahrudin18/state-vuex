@@ -165,3 +165,50 @@ dan dibuah sama di App.vue
     }
   }
 ```
+
+# Passing data ke mutations dengan payloads
+
+* main.js
+```
+....codenya masih sama
+
+    mutations: {
+        // parameter state sudah ditentukan oleh vuex
+        increment(state) {
+            state.counter = state.counter + 1 // ini hanya diubah sekali jika ingin mengubah state keseluruhan data
+        },
+        // nilai yang dimasukan kedalam payload bebas, bisa number, string, object dll
+        increase(state, payload) {
+            state.counter = state.counter + payload.value; // ini yang diubah
+        }
+    }
+
+
+...masih sama
+
+```
+
+* App.vue
+
+```
+methods: {
+    addOne() {
+      return this.$store.commit('increase', { value: 10 }); // paramenter payload ini nilai yang diinputkan bebas bisa number, object, atau lainnya
+    }
+}
+```
+
+atau bisa seperti ini pada componentnya (App.vue) jika ingin melakukan input lebih banyak:
+
+```
+methods: {
+    addOne() {
+      // return this.$store.commit('increase', { value: 10 }); // paramenter payload ini nilai yang diinputkan bebas bisa number, object, atau lainnya
+      return this.$store.commit({
+        type: 'increase',
+        value: 10
+      });
+    }
+}
+```
+
