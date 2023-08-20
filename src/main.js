@@ -18,8 +18,8 @@ const store = createStore({
             state.counter = state.counter + 1 // ini hanya diubah sekali jika ingin mengubah state keseluruhan data
         },
         // nilai yang dimasukan kedalam payload bebas, bisa number, string, object dll
-        increase(state, payload) {
-            state.counter = state.counter + payload.value;
+        increase(state, params) {
+            state.counter = state.counter + params.value;
         }
     }
 })

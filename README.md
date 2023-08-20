@@ -184,6 +184,8 @@ maka pada code commitnya juga harus sama menggunakan nama property ```namaSaya``
 return this.$store.commit('increase', { namaSaya: 10 });
 ```
 
+***noted: begitupun penamaan payload boleh ```payload``` atau nama lain ya:) *** 
+
 ***oke itu penjelasan singkatnya tentang property pada payload, berikut codingan utuhnya:**
 
 
