@@ -168,6 +168,26 @@ dan dibuah sama di App.vue
 
 # Passing data ke mutations dengan payloads
 
+**Keterangan:**
+```payload.value``` kata value pada payload adalah nama property, dan itu bisa apa saja misal diganti jadi ```nilai``` atau nama lain yang sesuai kebutuhan. asalkan nama di payload.value nya sama dengan nama property di commit nya misal kyk gini diganti jadi namaSaya: 
+
+mutations pada main.js
+```
+...code yang lainnya sama
+
+state.counter = state.counter + payload.namaSaya;
+...code yang lainnya sama
+```
+
+maka pada code commitnya juga harus sama menggunakan nama property ```namaSaya```:
+```
+return this.$store.commit('increase', { namaSaya: 10 });
+```
+
+***oke itu penjelasan singkatnya tentang property pada payload, berikut codingan utuhnya:**
+
+
+
 * main.js
 ```
 ....codenya masih sama
