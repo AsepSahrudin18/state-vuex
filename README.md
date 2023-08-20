@@ -79,7 +79,7 @@ export default {
 </script>
 ```
 
-kalau mau pakaid di component functionnya harus sertakan ini juga:
+kalau mau pakai di component functionnya harus sertakan ini juga:
 
 ```
 <script>
